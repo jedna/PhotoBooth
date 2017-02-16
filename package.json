@@ -2,7 +2,10 @@
 	"name": "photo-booth",
 	"version": "0.0.0",
 	"description": "Standalone application for photo booths",
-	"repository": "https://github.com/jedna/PhotoBooth",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/jedna/PhotoBooth"
+	},
 	"scripts": {
 		"build": "node tasks/release.js",
 		"build:clean": "cross-env PLATFORM_TARGET=clean node tasks/release.js",
@@ -61,5 +64,6 @@
 		"webpack": "^2.2.0",
 		"webpack-dev-server": "^2.2.0"
 	},
-	"dependencies": {}
+	"dependencies": {},
+	"licence": "CC-BY-NC-ND-4.0"
 }

@@ -1,13 +1,18 @@
 {
-  "name": "photo-booth",
-  "version": "0.0.0",
-  "description": "Standalone application for photo booths",
-  "main": "./dist/main.js",
-  "dependencies": {
-    "vue": "^2.1.10",
-    "vue-electron": "^1.0.6",
-    "vue-router": "^2.1.2"
-  },
-  "devDependencies": {},
-  "author": "Jan Hrubeš <jan@hrubesovi.com>"
+	"name": "photo-booth",
+	"version": "0.0.0",
+	"description": "Standalone application for photo booths",
+	"main": "./dist/main.js",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/jedna/PhotoBooth"
+	},
+	"dependencies": {
+		"vue": "^2.1.10",
+		"vue-electron": "^1.0.6",
+		"vue-router": "^2.1.2"
+	},
+	"devDependencies": {},
+	"author": "Jan Hrubeš <jan@hrubesovi.com>",
+	"licence": "CC-BY-NC-ND-4.0"
 }
