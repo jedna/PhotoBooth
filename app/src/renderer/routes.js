@@ -5,7 +5,7 @@ export default [
     component: require('components/LandingPageView')
   },
   {
-    path: '/editor',
+    path: '/editor/:photo_id',
     name: 'editor',
     component: require('components/EditorView')
   },

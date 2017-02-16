@@ -3,7 +3,7 @@
     <li><a href="https://simulatedgreg.gitbooks.io/electron-vue/content/index.html">documentation</a></li> |
     <li><a href="http://electron.atom.io/">electron</a></li> |
     <li><a href="http://vuejs.org/">vue.js</a></li> |
-    <li><router-link to="/editor">local link</router-link></li>
+    <li><router-link to="/editor/1">local link</router-link></li>
   </ul>
 </template>
 
