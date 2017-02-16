@@ -22,5 +22,9 @@ module.exports = {
 		"no-tabs"               : 0,
 		"indent"                : [2, 'tab'],
 		"key-spacing"           : 0
+	},
+	'globals': {
+		'$': true,
+		'jQuery': true
 	}
 }

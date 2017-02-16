@@ -1,0 +1,27 @@
+.col-content {
+	margin-left: @left-menu-width;
+	text-align: center;
+	overflow: hidden;
+}
+
+.photo {
+	//min-height: 200px;
+	will-change: opacity;
+	-webkit-transition: opacity 1s;
+	transition: opacity 1s;
+	text-align: center;
+	background-color: @navbar-inverse-link-active-bg;
+
+
+	&.loaded {
+		opacity: 1;
+	}
+
+	//background: url(../img/loading.gif) center center no-repeat;
+
+	img {
+		cursor: pointer;
+		max-height: 100vh;
+		display: inline-block;
+	}
+}
