@@ -1,8 +1,13 @@
 <template>
-	<li class="image-thumb" @click="selectPhoto(i)">
-		<img :class="[photo.active ? 'active' : '', isPrinted(photo) ? 'printed' : '']"
-		     class="img-responsive" :src="photo.thumb" alt="">
+	<router-link :to="{ name: 'browser-selected', params: {photo_id: photo.name}}" exact>
+	<li class="image-thumb">
+
+			<img :class="[isPrinted(photo) ? 'printed' : '']"
+			     class="img-responsive" :src="photo.thumb" alt="">
+
 	</li>
+	</router-link>
+
 </template>
 
 <script>
@@ -26,7 +31,7 @@
 <style scoped lang="less">
 	@import '../../assets/less/admin.less';
 
-	img {
+	.image-thumb img {
 		cursor: pointer;
 		display: inline-block;
 		padding: 1em 1.5em;
@@ -34,20 +39,19 @@
 		border-bottom-right-radius: @border-radius-base;
 		font-size: .8em;
 		color: @navbar-inverse-link-color;
-
 	}
 
-	img:hover {
+	.image-thumb img:hover {
 		background-color: @navbar-inverse-link-active-bg;
 		color: @navbar-inverse-link-active-color
 	}
 
-	img.active {
+	.router-link-active .image-thumb img {
 		background-color: @navbar-inverse-link-active-bg;
 		color: @navbar-inverse-link-active-color
 	}
 
-	img.printed {
+	.image-thumb img.printed {
 		border-left: 1px solid green;
 	}
 </style>

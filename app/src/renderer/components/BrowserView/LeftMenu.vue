@@ -61,6 +61,7 @@
 		/*opacity: 0;*/
 		/*transform: translateX(-@left-menu-width);*/
 		transition: visibility 0s .12s linear, opacity .12s ease-in, transform .12s ease-in;
+		z-index: 0;
 	}
 
 	.col-menu {
@@ -68,11 +69,12 @@
 		float: left;
 		width: @left-menu-width;
 		height: 100vh;
-		pointer-events: none;
+		/*pointer-events: none;*/
 		/*visibility: hidden;*/
 		/*opacity: 0;*/
 		/*transform: scale(.8);*/
 		transition: visibility 0s .12s linear, opacity .12s ease-in, transform .12s ease-in;
+		z-index: 10;
 	}
 
 	.photo-list {
@@ -80,6 +82,7 @@
 		margin: 0;
 		overflow: scroll;
 		height: 100vh;
+		z-index: 100;
 	}
 
 	.header {
@@ -96,6 +99,17 @@
 			margin-top: .5em;
 			color: #fff;
 		}
+	}
+
+	.navbar-brand {
+		padding: 10px;
+
+		&>img {
+			  height: 100%;
+			  padding: 0px; /* firefox bug fix */
+			  width: auto;
+		  }
+
 	}
 
 	#select_folder {

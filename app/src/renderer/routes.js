@@ -10,12 +10,18 @@ export default [
 		component: require('components/EditorView')
 	},
 	{
-		path     : '/',
+		path     : '/browser',
 		name     : 'browser',
 		component: require('components/BrowserView')
 	},
 	{
+		path     : '/browser/:photo_id',
+		name     : 'browser-selected',
+		props    : true,
+		component: require('components/BrowserView')
+	},
+	{
 		path    : '*',
-		redirect: '/'
+		redirect: '/browser'
 	}
 ]

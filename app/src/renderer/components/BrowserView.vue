@@ -1,7 +1,7 @@
 <template>
 	<div class="">
-		<left-menu></left-menu>
-		<preview></preview>
+		<left-menu :photo_id="photo_id"></left-menu>
+		<preview :photo_path="photo_id"></preview>
 	</div>
 </template>
 
@@ -10,6 +10,7 @@
 	import Preview from './BrowserView/Preview'
 
 	export default {
+		props: ['photo_id'],
 		created () {
 
 		},
@@ -31,18 +32,6 @@
 		font-weight: 300;
 		background-color: #fff;
 	}
-
-	.navbar-brand {
-		padding: 10px;
-
-	&>img {
-		height: 100%;
-		padding: 0px; /* firefox bug fix */
-		width: auto;
-	}
-
-	}
-
 
 	/* Overwrite the default to keep the scrollbar always visible */
 
