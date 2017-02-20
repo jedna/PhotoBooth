@@ -5,7 +5,14 @@
 </template>
 
 <script>
-	export default {}
+	export default {
+		created () {
+
+		},
+		methods: {
+			setFolder
+		}
+	}
 </script>
 
 <style>
