@@ -1,22 +1,23 @@
 {
-	"name": "photo-booth",
-	"version": "0.0.0",
-	"description": "Standalone application for photo booths",
-	"main": "./dist/main.js",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/jedna/PhotoBooth"
-	},
-	"dependencies": {
-		"vue": "^2.1.10",
-		"vue-electron": "^1.0.6",
-		"vue-router": "^2.1.2",
-		"chokidar": "^1.6.1",
-		"electron-log": "^1.3.0",
-		"electron-settings": "^2.2.2",
-		"jimp": "^0.2.27"
-	},
-	"devDependencies": {},
-	"author": "Jan Hrubeš <jan@hrubesovi.com>",
-	"licence": "CC-BY-NC-ND-4.0"
+  "name": "photo-booth",
+  "version": "0.0.0",
+  "description": "Standalone application for photo booths",
+  "main": "./dist/main.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jedna/PhotoBooth"
+  },
+  "dependencies": {
+    "async": "^2.3.0",
+    "chokidar": "^1.6.1",
+    "electron-log": "^1.3.0",
+    "electron-settings": "^2.2.2",
+    "jimp": "^0.2.27",
+    "vue": "^2.1.10",
+    "vue-electron": "^1.0.6",
+    "vue-router": "^2.1.2"
+  },
+  "devDependencies": {},
+  "author": "Jan Hrubeš <jan@hrubesovi.com>",
+  "licence": "CC-BY-NC-ND-4.0"
 }

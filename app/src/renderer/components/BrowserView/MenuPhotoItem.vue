@@ -1,57 +1,57 @@
 <template>
-	<router-link :to="{ name: 'browser-selected', params: {photo_id: photo.name}}" exact>
-	<li class="image-thumb">
+    <router-link :to="{ name: 'browser-selected', params: {photo_id: photo.name}}" exact>
+    <li class="image-thumb">
 
-			<img :class="[isPrinted(photo) ? 'printed' : '']"
-			     class="img-responsive" :src="photo.thumb" alt="">
+            <img :class="[isPrinted(photo) ? 'printed' : '']"
+                 class="img-responsive" :src="'file://'.concat(photo.thumb)" alt="">
 
-	</li>
-	</router-link>
+    </li>
+    </router-link>
 
 </template>
 
 <script>
-	import fs from 'fs'
-	import path from 'path'
+    import fs from 'fs'
+    import path from 'path'
 
-	export default {
-		props  : ['photo'],
-		methods: {
-			isPrinted (photo) {
-				let dir = path.dirname(photo.path) + '/output/'
-				let photoPath = dir + photo.name.replace(/(\.[^.]*)?$/, '.printed$1')
-				// let photoPath = 'test'
+    export default {
+        props  : ['photo'],
+        methods: {
+            isPrinted (photo) {
+                let dir = path.dirname(photo.path) + '/output/'
+                let photoPath = dir + photo.name.replace(/(\.[^.]*)?$/, '.printed$1')
+                // let photoPath = 'test'
 
-				return fs.existsSync(photoPath)
-			}
-		}
-	}
+                return fs.existsSync(photoPath)
+            }
+        }
+    }
 </script>
 
 <style scoped lang="less">
-	@import '../../assets/less/admin.less';
+    @import '../../assets/less/admin.less';
 
-	.image-thumb img {
-		cursor: pointer;
-		display: inline-block;
-		padding: 1em 1.5em;
-		border-top-right-radius: @border-radius-base;
-		border-bottom-right-radius: @border-radius-base;
-		font-size: .8em;
-		color: @navbar-inverse-link-color;
-	}
+    .image-thumb img {
+        cursor: pointer;
+        display: inline-block;
+        padding: 1em 1.5em;
+        border-top-right-radius: @border-radius-base;
+        border-bottom-right-radius: @border-radius-base;
+        font-size: .8em;
+        color: @navbar-inverse-link-color;
+    }
 
-	.image-thumb img:hover {
-		background-color: @navbar-inverse-link-active-bg;
-		color: @navbar-inverse-link-active-color
-	}
+    .image-thumb img:hover {
+        background-color: @navbar-inverse-link-active-bg;
+        color: @navbar-inverse-link-active-color
+    }
 
-	.router-link-active .image-thumb img {
-		background-color: @navbar-inverse-link-active-bg;
-		color: @navbar-inverse-link-active-color
-	}
+    .router-link-active .image-thumb img {
+        background-color: @navbar-inverse-link-active-bg;
+        color: @navbar-inverse-link-active-color
+    }
 
-	.image-thumb img.printed {
-		border-left: 1px solid green;
-	}
+    .image-thumb img.printed {
+        border-left: 1px solid green;
+    }
 </style>
