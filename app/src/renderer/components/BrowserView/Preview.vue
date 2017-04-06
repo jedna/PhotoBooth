@@ -1,13 +1,9 @@
 <template>
     <div class="col-content">
-        <h1>{{ photo_path }}</h1>
-
-        <div v-if="photo_path" class="photo">
-            <router-link to="/editor/1" tag="div">
-                <img v-if="photo_path" class="img-responsive" :src="photo_path">
-            </router-link>
+        <router-link v-if="path" :to="{ name: 'editor', params: {path: path}}" tag="div">
+            <img class="img-responsive" :src="path">
+        </router-link>
             <!--<img v-else class="img-responsive" src="img/loading.gif">-->
-        </div>
         <div v-else>
             <p>Ahoj</p>
         </div>
@@ -16,7 +12,7 @@
 
 <script>
     export default {
-        props: ['photo_path']
+        props: ['path']
     }
 </script>
 
@@ -34,27 +30,20 @@
         display: flex;
         justify-content: center;
         text-align: center;
-    }
 
-    .photo {
-        /*min-height: 200px;*/
-        will-change: opacity;
-        -webkit-transition: opacity 1s;
-        transition: opacity 1s;
-        text-align: center;
-        background-color: @navbar-inverse-link-active-bg;
-
-
-        &.loaded {
-             opacity: 1;
-         }
-
-        /*background: url(../img/loading.gif) center center no-repeat;*/
+        div {
+            width: 100%;
+            height: 100%;
+        }
 
         img {
             cursor: pointer;
-            max-height: 100vh;
+            height: 100%;
+            width: 100%;
+            object-fit: contain;
             display: inline-block;
         }
     }
+
+
 </style>

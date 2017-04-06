@@ -1,5 +1,4 @@
 // todo: switch to sharp library
-// let fs = require('fs')
 const asyncQueue = require('async/queue')
 const maxworkers = require('os').cpus().length
 const Jimp = require('jimp')

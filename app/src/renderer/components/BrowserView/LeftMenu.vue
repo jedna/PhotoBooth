@@ -21,7 +21,7 @@
                     <img src="./assets/logo.png">
                     <p id="loading-text" class="loading_text">{{msg}}</p>
                 </li>
-                <menu-photo-item v-for="photo in photos" :photo="photo"></menu-photo-item>
+                <menu-photo-item v-for="photo in photos" :photo="photo" :key="photo.path"></menu-photo-item>
             </ul>
         </div>
     </div>

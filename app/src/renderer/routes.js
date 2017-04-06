@@ -5,7 +5,7 @@ export default [
         component: require('components/LandingPageView')
     },
     {
-        path     : '/editor/:photo_id',
+        path     : '/editor/:path',
         name     : 'editor',
         component: require('components/EditorView')
     },
@@ -15,7 +15,7 @@ export default [
         component: require('components/BrowserView')
     },
     {
-        path     : '/browser/:photo_id',
+        path     : '/browser/:path',
         name     : 'browser-selected',
         props    : true,
         component: require('components/BrowserView')

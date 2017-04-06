@@ -1,7 +1,7 @@
 <template>
     <div class="">
-        <left-menu :photo_id="photo_id" v-on:select-folder="selectFolder"></left-menu>
-        <preview :photo_path="photo_id"></preview>
+        <left-menu v-on:select-folder="selectFolder"></left-menu>
+        <preview :path="path"></preview>
     </div>
 </template>
 
@@ -11,10 +11,10 @@
     const {dialog} = require('electron').remote
     const {ipcRenderer} = require('electron')
     const fs = require('fs')
-    const ImageResizer = require('../../main/ImageResizer')
+    const ImageResizer = require('../ImageResizer')
 
     export default {
-        props     : ['photo_id'],
+        props     : ['path'],
         data () {
             return {folder: null}
         },

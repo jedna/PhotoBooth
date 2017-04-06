@@ -1,5 +1,5 @@
 <template>
-    <router-link :to="{ name: 'browser-selected', params: {photo_id: photo.name}}" exact>
+    <router-link :to="{ name: 'browser-selected', params: {path: photo.path}}" exact>
     <li class="image-thumb">
 
             <img :class="[isPrinted(photo) ? 'printed' : '']"
