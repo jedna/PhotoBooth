@@ -9,7 +9,7 @@ const winURL = process.env.NODE_ENV === 'development'
     ? `http://localhost:${require('../../../config').port}`
     : `file://${__dirname}/index.html`
 
-function createWindow() {
+function createWindow () {
     /**
      * Initial window options
      */
@@ -17,11 +17,12 @@ function createWindow() {
         height: 600,
         width : 800,
         // icon  : path.join(__dirname, '../renderer/assets/img/logo.png'),
-        icon  : path.join(__dirname, '../renderer/assets/img/logo.png'),
-        webSecurity: false
+        icon  : path.join(__dirname, '../renderer/assets/img/logo.png')
     })
 
     mainWindow.loadURL(winURL)
+
+    mainWindow.webContents.openDevTools()
 
     mainWindow.on('closed', () => {
         mainWindow = null
