@@ -4,9 +4,12 @@ import {app, BrowserWindow} from 'electron'
 
 import path from 'path'
 
+require('./ImageWatcher')
+
 let mainWindow
 const winURL = process.env.NODE_ENV === 'development'
-    ? `http://localhost:${require('../../../config').port}`
+    // ? `http://localhost:${require('../../../config').port}`
+    ? `file://${__dirname}/../../dist/index.html`
     : `file://${__dirname}/index.html`
 
 function createWindow () {
@@ -45,5 +48,3 @@ app.on('activate', () => {
         createWindow()
     }
 })
-
-require('./ImageWatcher')
