@@ -7,6 +7,7 @@ export default [
     {
         path     : '/editor/:path',
         name     : 'editor',
+        props    : true,
         component: require('components/EditorView')
     },
     {
@@ -19,6 +20,11 @@ export default [
         name     : 'browser-selected',
         props    : true,
         component: require('components/BrowserView')
+    },
+    {
+        path     : '/settings',
+        name     : 'settings',
+        component: require('components/SettingsView')
     },
     {
         path    : '*',

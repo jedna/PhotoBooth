@@ -9,7 +9,7 @@
                     <span class="fa fa-bars"></span>
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                    <li><a href="#" @click="this.$parent.show('settings')">Settings</a></li>
+                    <li><router-link :to="{name: 'settings'}">Settings</router-link></li>
                     <li role="separator" class="divider"></li>
                     <li><a href="#" @click="selectFolder()">Select folder</a></li>
                 </ul>
@@ -34,7 +34,7 @@
         // props: ['photos'],
         data () {
             return {
-                msg: 'Test',
+                msg: '',
                 photos: this.$store.state.photos
             }
         },

@@ -32,7 +32,8 @@ export const mutations = {
         photo.path = value
     },
 
-    addFrame (state, {path}) {
-        state.frames.push({path: path})
+    addFrame (state, {id, path}) {
+        console.info('Setting frame ' + id + ' on ' + path)
+        state.frames[id] = {path: path}
     }
 }
