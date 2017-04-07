@@ -1,4 +1,5 @@
-export const STORAGE_KEY = 'photos-vuejs'
+export const STORAGE_KEY_PHOTOS = 'photos-vuejs'
+export const STORAGE_KEY_FRAMES = 'frames-vuejs'
 
 // for testing
 if (navigator.userAgent.indexOf('PhantomJS') > -1) {
@@ -6,13 +7,14 @@ if (navigator.userAgent.indexOf('PhantomJS') > -1) {
 }
 
 export const state = {
-    photos: JSON.parse(window.localStorage.getItem(STORAGE_KEY) || '[]')
+    photos: JSON.parse(window.localStorage.getItem(STORAGE_KEY_PHOTOS) || '[]'),
+    frames: JSON.parse(window.localStorage.getItem(STORAGE_KEY_FRAMES) || '[]')
 }
 
 export const mutations = {
     addPhoto (state, path) {
         state.photos.push({
-            path,
+            path: path,
             done: false
         })
     },
@@ -28,5 +30,9 @@ export const mutations = {
 
     editPhoto (state, {photo, value}) {
         photo.path = value
+    },
+
+    addFrame (state, {path}) {
+        state.frames.push({path: path})
     }
 }
