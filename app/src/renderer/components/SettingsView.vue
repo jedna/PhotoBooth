@@ -8,29 +8,39 @@
             <h2>Frames</h2>
             <div class="row">
                 <div class="col-sm-3">
-                    <div class="frame" @click="selectFrame(0)" :class="[frames[0] ? 'active' : '']">
+                    <div class="frame" :class="[frames[0] ? 'active' : '']">
                         <div class="frame-header">
                             <strong>Frame #1</strong>
                         </div>
-                        <img v-if="frames[0]" :src="frames[0].path" class="img-responsive" alt="">
+                        <template v-if="frames[0]">
+                            <img :src="frames[0].path" class="img-responsive" alt="">
+                            <div class="frame-footer">
+                                <a @click="removeFrame(0)">Discard frame</a>
+                            </div>
+                        </template>
                         <div v-else class="frame-footer">
                             <div class="frame-input">
                                 <span class="input-placeholder"></span>
-                                <span class="input-label">Select frame</span>
+                                <span @click="selectFrame(0)" class="input-label">Select frame</span>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-sm-3">
-                    <div class="frame" @click="selectFrame(1)" :class="[frames[1] ? 'active' : '']">
+                    <div class="frame" :class="[frames[1] ? 'active' : '']">
                         <div class="frame-header">
                             <strong>Frame #2</strong>
                         </div>
-                        <img v-if="frames[1]" :src="frames[1].path" class="img-responsive" alt="">
+                        <template v-if="frames[1]">
+                            <img :src="frames[1].path" class="img-responsive" alt="">
+                            <div class="frame-footer">
+                                <a @click="removeFrame(1)">Discard frame</a>
+                            </div>
+                        </template>
                         <div v-else class="frame-footer">
                             <div class="frame-input">
                                 <span class="input-placeholder"></span>
-                                <span class="input-label">Select frame</span>
+                                <span @click="selectFrame(1)" class="input-label">Select frame</span>
                             </div>
                         </div>
                     </div>
@@ -52,7 +62,7 @@
         },
         methods: {
             selectFrame: function (id) {
-                console.log('Select frame clicked: ' + this.frames[id])
+                console.log('Select frame clicked: ' + id)
                 let path = dialog.showOpenDialog({
                     properties: [
                         'openFile'
@@ -66,6 +76,10 @@
                     this.$store.commit('addFrame', {id: id, path: path[0]})
                 }
                 // console.log(this.frames[id])
+            },
+            removeFrame: function (id) {
+                console.log('Remove frame clicked: ' + id)
+                this.$store.commit('removeFrame', id)
             }
         }
     }

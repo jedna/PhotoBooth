@@ -1,3 +1,5 @@
+import Vue from 'vue'
+
 export const STORAGE_KEY_PHOTOS = 'photos-vuejs'
 export const STORAGE_KEY_FRAMES = 'frames-vuejs'
 
@@ -33,7 +35,10 @@ export const mutations = {
     },
 
     addFrame (state, {id, path}) {
-        console.info('Setting frame ' + id + ' on ' + path)
-        state.frames[id] = {path: path}
+        Vue.set(state.frames, id, {path: path})
+    },
+
+    removeFrame (state, id) {
+        state.frames.splice(id, 1)
     }
 }
