@@ -13,7 +13,9 @@ import 'bootstrap/dist/js/bootstrap.min.js'
 
 Vue.use(Electron)
 Vue.use(Router)
-Vue.use(VueLazyload)
+Vue.use(VueLazyload, {
+    loading: require('components/BrowserView/assets/placeholder.jpg')
+})
 Vue.config.debug = true
 
 const router = new Router({

@@ -30,7 +30,7 @@
         },
         methods: {
             loadEditor () {
-                console.log(this.frames)
+                // console.log(this.frames)
                 if (this.frames.length) {
                     ImageComposer.drawImage(this.path, this.frames[this.activeFrame].path, this.$refs.imageCanvas)
                 } else {
@@ -78,12 +78,12 @@
                             // self.close()
                             setTimeout(function () {
                                 win.close()
-                            }, 500)
+                            }, 2000)
                         }, 500)
                     })
                     win.on('closed', () => {
                         win = null
-                        self.$router.push({name: 'browser'})
+                        self.$router.push({name: 'browser-selected', path: photo})
                     })
 
                     win.loadURL('file://' + photo)

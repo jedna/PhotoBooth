@@ -1,6 +1,6 @@
 <template>
     <div class="col-content">
-        <router-link v-if="path" :to="{ name: 'editor', params: {path: path}}" tag="img" :src="path" class="img-responsive"></router-link>
+        <router-link v-if="path" :to="{ name: 'editor', params: {path: path}}" tag="img" v-lazy="path" class="img-responsive"></router-link>
             <!--<img v-else class="img-responsive" src="img/loading.gif">-->
         <div v-else>
             <!--<img src="../../assets/img/logo.png" width="64" alt="">-->

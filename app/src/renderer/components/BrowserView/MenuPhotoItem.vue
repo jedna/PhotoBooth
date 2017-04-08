@@ -1,11 +1,7 @@
 <template>
-    <router-link :to="{ name: 'browser-selected', params: {path: photo.path}}" exact>
-    <li class="image-thumb">
-
-            <img :class="[isPrinted(photo) ? 'printed' : '']"
-                 class="img-responsive" v-lazy="photo.path" alt="">
-
-    </li>
+    <router-link tag="li" :to="{ name: 'browser-selected', params: {path: photo.path}}" exact class="image-thumb">
+        <img :class="[isPrinted(photo) ? 'printed' : '']"
+             class="img-responsive" v-lazy="photo.path" alt="">
     </router-link>
 
 </template>
