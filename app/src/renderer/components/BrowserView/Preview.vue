@@ -1,11 +1,10 @@
 <template>
     <div class="col-content">
-        <router-link v-if="path" :to="{ name: 'editor', params: {path: path}}" tag="div">
-            <img class="img-responsive" :src="path">
-        </router-link>
+        <router-link v-if="path" :to="{ name: 'editor', params: {path: path}}" tag="img" :src="path" class="img-responsive"></router-link>
             <!--<img v-else class="img-responsive" src="img/loading.gif">-->
         <div v-else>
-            <p>Ahoj</p>
+            <img src="../../assets/img/logo.png" width="64" alt="">
+            <h3>Select photo</h3>
         </div>
     </div>
 </template>
@@ -20,26 +19,24 @@
     @import '../../assets/less/admin.less';
 
     .col-content {
-        position: absolute;
-        top:0;
-        bottom:0;
-        left: @left-menu-width;
-        right:0;
+        height: 100vh;
+        padding: 20px;
+        background: @navbar-inverse-link-active-bg;
         overflow: hidden;
         align-items: center;
         display: flex;
         justify-content: center;
         text-align: center;
 
-        div {
+        a {
             width: 100%;
             height: 100%;
         }
 
         img {
             cursor: pointer;
-            height: 100%;
-            width: 100%;
+            max-height: 100%;
+            max-width: 100%;
             object-fit: contain;
             display: inline-block;
         }

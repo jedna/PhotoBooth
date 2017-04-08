@@ -8,8 +8,8 @@ require('./ImageWatcher')
 
 let mainWindow
 const winURL = process.env.NODE_ENV === 'development'
-    ? `http://localhost:${require('../../../config').port}`
-    // ? `file://${__dirname}/../../dist/index.html`
+    // ? `http://localhost:${require('../../../config').port}`
+    ? `file://${__dirname}/../../dist/index.html`
     : `file://${__dirname}/index.html`
 
 function createWindow () {

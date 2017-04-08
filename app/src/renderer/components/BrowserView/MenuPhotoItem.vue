@@ -3,7 +3,7 @@
     <li class="image-thumb">
 
             <img :class="[isPrinted(photo) ? 'printed' : '']"
-                 class="img-responsive" :src="'file://'.concat(photo.thumb)" alt="">
+                 class="img-responsive" :src="photo.path" alt="">
 
     </li>
     </router-link>
@@ -52,6 +52,6 @@
     }
 
     .image-thumb img.printed {
-        border-left: 1px solid green;
+        border-left: 3px solid #639698;
     }
 </style>

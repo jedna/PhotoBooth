@@ -1,8 +1,6 @@
 <template>
-    <div class="">
-        <left-menu v-on:select-folder="selectFolder"></left-menu>
-        <preview :path="path"></preview>
-    </div>
+    <left-menu v-on:select-folder="selectFolder"></left-menu>
+    <preview :path="path"></preview>
 </template>
 
 <script>

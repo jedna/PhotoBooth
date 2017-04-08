@@ -20,24 +20,29 @@
         props  : ['path'],
         data   : function () {
             return {
-                frames: this.$store.state.frames
+                frames: this.$store.state.frames,
+                activeFrame: 0
             }
         },
         mounted: function () {
             console.log('Editor created for ' + this.path)
-            if (this.frames.length) {
-                ImageComposer.drawImage(this.path, this.frames[0].path, this.$refs.imageCanvas)
-            } else {
-                alert('Select frame first')
-                this.$router.push({name: 'browser-selected', param: {path: this.path}})
-            }
+            this.loadEditor()
         },
         methods: {
+            loadEditor () {
+                console.log(this.frames)
+                if (this.frames.length) {
+                    ImageComposer.drawImage(this.path, this.frames[this.activeFrame].path, this.$refs.imageCanvas)
+                } else {
+                    alert('Select frame first')
+                    this.$router.push({name: 'browser-selected', param: {path: this.path}})
+                }
+            },
             switchFrame () {
-                this.frame = (this.frame + 1) % this.frames.length
+                this.activeFrame = (this.activeFrame + 1) % this.frames.length
                 console.log('Switching frames')
-                console.log(this.frame)
-                this.loadPhoto(this.photo)
+                console.log(this.activeFrame)
+                this.loadEditor()
                 // ImageComposer.enhancePhoto()
             },
             savePhoto () {
@@ -51,28 +56,34 @@
             },
             printPhoto () {
                 console.log('Printing photo.')
-                // let self = this
+                let self = this
 
                 // var objShell = new ActiveXObject("Shell.Application")
                 // objShell.ShellExecute('c:\windows\system32\shimgvw.dll,ImageView_PrintTo /pt '+path+' "Microsoft Print to PDF"')
-                ImageComposer.saveImage(this.photo, true, function (photo) {
+                ImageComposer.saveImage(this.$refs.imageCanvas, this.path, true, function (photo) {
                     console.log(photo)
 
                     const {BrowserWindow} = require('electron').remote
                     let win = new BrowserWindow({show: false})
                     win.setMenu(null)
-                    win.webContents.on('dom-ready', function () {
+                    win.webContents.on('dom-ready', function () { console.log('dom ready') })
+                    win.webContents.on('paint', function () { console.log('paint') })
+                    win.webContents.on('did-finish-load', function () {
+                        console.log('did finish load')
                         win.webContents.insertCSS('@page {size: 6in 4in margin: 0page-break-inside: avoid} img {height: 4in !important width: 6in !important border: none}')
                         win.show()
-                        win.webContents.print()
                         // small timeout so that print manage to pause js execution
                         setTimeout(function () {
+                            win.webContents.print()
                             // self.close()
-                            // win.close()
+                            setTimeout(function () {
+                                win.close()
+                            }, 500)
                         }, 500)
                     })
                     win.on('closed', () => {
                         win = null
+                        self.$router.push({name: 'browser'})
                     })
 
                     win.loadURL('file://' + photo)
