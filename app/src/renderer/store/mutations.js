@@ -21,8 +21,8 @@ export const mutations = {
         })
     },
 
-    addPhotos (state, photos) {
-        console.log('comitting addPhotos')
+    setPhotos (state, photos) {
+        state.photos.splice(0, state.photos.length)
         state.photos.push(...photos)
     },
 

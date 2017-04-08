@@ -1,6 +1,11 @@
 <template>
-    <left-menu v-on:select-folder="selectFolder"></left-menu>
-    <preview :path="path"></preview>
+    <div>
+        <left-menu v-on:select-folder="selectFolder"></left-menu>
+        <preview :path="path"></preview>
+        <div class="info-box" v-if="msg">
+            <h4>{{ msg }}</h4>
+        </div>
+    </div>
 </template>
 
 <script>
@@ -8,13 +13,12 @@
     import Preview from './BrowserView/Preview'
     const {dialog} = require('electron').remote
     const {ipcRenderer} = require('electron')
-    const fs = require('fs')
     const ImageResizer = require('../ImageResizer')
 
     export default {
         props     : ['path'],
         data () {
-            return {folder: null}
+            return {folder: null, msg: ''}
         },
         created () {
 //            ipcRenderer.send('watch-folder', this.path);
@@ -49,11 +53,7 @@
                 let toResize = []
 
                 arg.forEach((photo) => {
-                    if (!fs.existsSync(photo.thumb)) {
-                        toResize.push(photo)
-                    } else {
-                        resizedPhotos.unshift(photo)
-                    }
+                    resizedPhotos.unshift(photo)
                 })
 
                 // console.info(toResize)
@@ -72,26 +72,20 @@
                                 return b.name.localeCompare(a.name)
                             })
                             // console.info(items)
-                            self.$store.commit('addPhotos', items)
+                            self.$store.commit('setPhotos', items)
                             self.loading()
                         }
                     })
                 } else {
                     console.info('All resized')
-                    this.$store.commit('addPhotos', resizedPhotos)
-                    this.loading()
+                    this.$store.commit('setPhotos', resizedPhotos)
+                    setTimeout(function () {
+                        self.loading()
+                    }, 1000)
                 }
             },
             loading (text) {
-                let d = document.getElementById('loading-wrapper')
-                let p = document.getElementById('loading-text')
-                if (text) {
-                    p.innerHTML = text
-                    d.style.display = 'block'
-                } else {
-                    p.innerHTML = ''
-                    d.style.display = 'none'
-                }
+                this.msg = text
             }
         }
     }
@@ -121,5 +115,19 @@
         border-radius: 4px;
         background-color: rgba(0, 0, 0, .5);
         -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, .5);
+    }
+
+    .info-box {
+        position: absolute;
+        top:0;
+        left:0;
+        right:0;
+        bottom:0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #fff;
+        color: #333;
+        z-index: 200;
     }
 </style>

@@ -3,8 +3,9 @@
         <router-link v-if="path" :to="{ name: 'editor', params: {path: path}}" tag="img" :src="path" class="img-responsive"></router-link>
             <!--<img v-else class="img-responsive" src="img/loading.gif">-->
         <div v-else>
-            <img src="../../assets/img/logo.png" width="64" alt="">
-            <h3>Select photo</h3>
+            <!--<img src="../../assets/img/logo.png" width="64" alt="">-->
+            <h1><i class="fa fa-arrow-circle-left"></i></h1>
+            <h4>Select photo</h4>
         </div>
     </div>
 </template>
@@ -22,6 +23,7 @@
         height: 100vh;
         padding: 20px;
         background: @navbar-inverse-link-active-bg;
+        color: @navbar-inverse-link-active-color;
         overflow: hidden;
         align-items: center;
         display: flex;

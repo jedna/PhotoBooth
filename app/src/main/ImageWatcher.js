@@ -30,8 +30,8 @@ function watch (folder, event) {
 
     watcher.on('add', function (photoPath) {
         console.info('File', photoPath, 'has been added')
-        let item = {name: path.basename(photoPath), path: photoPath, active: false}
-        item.thumb = folder + '/th/' + item.name
+        let item = {name: path.basename(photoPath), path: photoPath}
+        // item.thumb = folder + '/th/' + item.name
         if (init) {
             photos.push(item)
         } else {

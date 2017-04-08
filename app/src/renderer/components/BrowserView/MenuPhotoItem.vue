@@ -3,7 +3,7 @@
     <li class="image-thumb">
 
             <img :class="[isPrinted(photo) ? 'printed' : '']"
-                 class="img-responsive" :src="photo.path" alt="">
+                 class="img-responsive" v-lazy="photo.path" alt="">
 
     </li>
     </router-link>

@@ -7,10 +7,13 @@ import routes from './routes'
 
 import store from './store'
 
+import VueLazyload from 'vue-lazyload'
+
 import 'bootstrap/dist/js/bootstrap.min.js'
 
 Vue.use(Electron)
 Vue.use(Router)
+Vue.use(VueLazyload)
 Vue.config.debug = true
 
 const router = new Router({
