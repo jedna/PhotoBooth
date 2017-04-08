@@ -1,6 +1,7 @@
 const _path = require('path')
 const fs = require('fs')
 const {dialog} = require('electron').remote
+const nativeImage = require('electron').nativeImage
 
 function trackTransforms (ctx) {
     let svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg')
@@ -74,13 +75,12 @@ export default {
     },
     saveImage   : function (canvas, path, fast, cb) {
         let dir = _path.dirname(path) + '/output/'
-        let filename = path.split('\\').pop().split('/').pop();
+        let filename = path.split('\\').pop().split('/').pop()
         let photoPath = dir + filename.replace(/(\.[^.]*)?$/, '.printed$1')
 
         if (!fs.existsSync(dir)) {
             fs.mkdirSync(dir)
         }
-
 
         if (canvas.width < canvas.height) {
             let self = this
@@ -93,8 +93,7 @@ export default {
     },
     saveData    : function (canvas, photoPath, fast, cb) {
         console.info('Getting data')
-        let photoData = this.getImageData(canvas).replace(/^data:image\/(png|jpg|jpeg)base64,/, '')
-        let buff = new Buffer(photoData, 'base64');
+        let buff = this.canvasBuffer(canvas, 'image/jpeg')
 
         // console.info(photoData)
         // let fileName = 'Framed ' + canvas.attributes['data-name'].value
@@ -109,7 +108,7 @@ export default {
                         if (err) {
                             alert('There was an error saving the photo:' + err.message)
                         }
-                        photoData = buff = null
+                        buff = null
                         cb(saveTo)
                     })
                 } else {
@@ -122,7 +121,7 @@ export default {
                     alert('There was an error saving the photo:' + err.message)
                 }
                 console.log('Wrote to ' + photoPath)
-                photoData = buff = null
+                buff = null
                 cb(photoPath)
             })
         }
@@ -181,6 +180,7 @@ export default {
 
             ctx.restore()
         }
+
         frameImage.onload = function () {
             // canvas.width = frameImage.width
             // canvas.height = frameImage.height
@@ -303,6 +303,20 @@ export default {
         } else if (e.keyCode === '40') { // down arrow
         } else if (e.keyCode === '41') { // left arrow
         } else if (e.keyCode === '13') { // enter
+        }
+    },
+    canvasBuffer (canvas, type, quality) {
+        type = type || 'image/png'
+        quality = typeof quality === 'number' ? quality : 0.9
+
+        let data = canvas.toDataURL(type, quality)
+        let img = typeof nativeImage.createFromDataURL === 'function'
+            ? nativeImage.createFromDataURL(data) // electron v0.36+
+            : nativeImage.createFromDataUrl(data) // electron v0.30
+        if (/^image\/jpe?g$/.test(type)) {
+            return img.toJpeg(Math.floor(quality * 100))
+        } else {
+            return img.toPng()
         }
     }
 }

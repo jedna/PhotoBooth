@@ -1,7 +1,6 @@
 <template>
     <div class="editor-photo">
         <canvas ref="imageCanvas"></canvas>
-        <canvas ref="frameCanvas"></canvas>
         <div id="save" class="btn-print">
             <router-link :to="{ name: 'browser-selected', param: {path: path}}">
                 <span class="btn btn-warning fa fa-close"></span>
@@ -93,7 +92,7 @@
         position: fixed;
         top: 0;
         left: 0;
-        padding: 50px 10px 65px;
+        padding: 30px 10px 45px;
         width: 100%;
         height: 100%;
         background-color: #444;
