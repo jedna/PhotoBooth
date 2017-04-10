@@ -77,7 +77,7 @@
                             win.webContents.print()
                             // self.close()
                             setTimeout(function () {
-                                win.close()
+                                // win.close()
                             }, 2000)
                         }, 500)
                     })
