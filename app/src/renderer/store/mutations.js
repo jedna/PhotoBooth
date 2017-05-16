@@ -14,11 +14,8 @@ export const state = {
 }
 
 export const mutations = {
-    addPhoto (state, path) {
-        state.photos.push({
-            path: path,
-            done: false
-        })
+    addPhoto (state, photo) {
+        state.photos.push(photo)
     },
 
     setPhotos (state, photos) {

@@ -2,9 +2,9 @@ const fs = require('fs')
 const ipc = require('electron').ipcMain
 const path = require('path')
 const Chokidar = require('chokidar')
+const sharp = require('sharp')
 
 let watcher = null
-let photos = []
 
 ipc.on('watch-folder', (event, folder) => {
     console.info('Watch-folder event received')
@@ -13,7 +13,6 @@ ipc.on('watch-folder', (event, folder) => {
 })
 
 function watch (folder, event) {
-    let init = true
     console.log('Loading photos in ' + folder)
     if (!fs.existsSync(folder + '/th')) {
         console.log('Creating thumb dir' + folder + '/th')
@@ -28,12 +27,25 @@ function watch (folder, event) {
         persistent: true
     })
 
+    function resize (item, cb) {
+        sharp(item.path).resize(160).toFile(item.thumb, function (err) {
+            if (err) {
+                throw err
+            }
+            cb(item)
+        })
+    }
+
     watcher.on('add', function (photoPath) {
         console.info('File', photoPath, 'has been added')
         let item = {name: path.basename(photoPath), path: photoPath}
-        // item.thumb = folder + '/th/' + item.name
-        if (init) {
-            photos.push(item)
+        item.thumb = folder + '/th/' + item.name
+
+        if (!fs.existsSync(item.thumb)) {
+            resize(item, function (item) {
+                console.info('Thumbnail generated', item)
+                event.sender.send('new-photos', [item])
+            })
         } else {
             event.sender.send('new-photos', [item])
         }
@@ -41,12 +53,12 @@ function watch (folder, event) {
 
     watcher.on('ready', function () {
         console.info('Watcher ready')
-        init = false
-        photos = photos.sort(function (a, b) {
-            return b.name.localeCompare(a.name)
-        })
-        // console.info(event)
-        event.sender.send('new-photos', photos)
-        photos = []
+        // init = false
+        // photos = photos.sort(function (a, b) {
+        //     return b.name.localeCompare(a.name)
+        // })
+        // // console.info(event)
+        // event.sender.send('new-photos', photos)
+        // photos = []
     })
 }
