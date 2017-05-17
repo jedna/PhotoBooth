@@ -3,8 +3,21 @@ const ipc = require('electron').ipcMain
 const path = require('path')
 const Chokidar = require('chokidar')
 const sharp = require('sharp')
+const async = require('async')
+const maxworkers = require('os').cpus().length - 1;
 
 let watcher = null
+
+function resize (item, cb) {
+    sharp(item.path).resize(160).toFile(item.thumb, function (err) {
+        if (err) {
+            throw err
+        }
+        cb(item)
+    })
+}
+
+let queue = async.queue(resize, maxworkers)
 
 ipc.on('watch-folder', (event, folder) => {
     console.info('Watch-folder event received')
@@ -27,22 +40,13 @@ function watch (folder, event) {
         persistent: true
     })
 
-    function resize (item, cb) {
-        sharp(item.path).resize(160).toFile(item.thumb, function (err) {
-            if (err) {
-                throw err
-            }
-            cb(item)
-        })
-    }
-
     watcher.on('add', function (photoPath) {
         console.info('File', photoPath, 'has been added')
         let item = {name: path.basename(photoPath), path: photoPath}
         item.thumb = folder + '/th/' + item.name
 
         if (!fs.existsSync(item.thumb)) {
-            resize(item, function (item) {
+            queue.push(item, function (item, err) {
                 console.info('Thumbnail generated', item)
                 event.sender.send('new-photos', [item])
             })

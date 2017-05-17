@@ -1,26 +1,26 @@
 {
-  "name": "photo-booth",
-  "version": "0.0.1",
-  "description": "Standalone application for photo booths",
-  "main": "./dist/main.js",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/jedna/PhotoBooth"
-  },
-  "dependencies": {
-    "async": "^2.3.0",
-    "chokidar": "^1.6.1",
-    "electron-log": "^2.0.2",
-    "vue": "^2.1.10",
-    "vue-electron": "^1.0.6",
-    "vue-router": "^2.1.2",
-    "jquery": "^3.2.1",
-    "vuex": "^2.2.1",
-    "bootstrap": "^3.3.7",
-    "vue-lazyload": "^1.0.3",
-    "sharp": "latest"
-  },
+    "name": "photo-booth",
+    "version": "0.0.1",
+    "description": "Standalone application for photo booths",
+    "main": "./dist/main.js",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/jedna/PhotoBooth"
+    },
+    "dependencies": {
+        "async": "^2.3.0",
+        "chokidar": "^1.6.1",
+        "electron-log": "^2.0.2",
+        "vue": "^2.1.10",
+        "vue-electron": "^1.0.6",
+        "vue-router": "^2.1.2",
+        "jquery": "^3.2.1",
+        "vuex": "^2.2.1",
+        "bootstrap": "^3.3.7",
+        "vue-lazyload": "^1.0.3",
+        "sharp": "latest"
+    },
     "devDependencies": {},
-  "author": "Jan Hrubeš <jan@hrubesovi.com>",
-  "licence": "CC-BY-NC-ND-4.0"
+    "author": "Jan Hrubeš <jan@hrubesovi.com>",
+    "licence": "CC-BY-NC-ND-4.0"
 }
