@@ -13,7 +13,7 @@
                             <strong>Frame #1</strong>
                         </div>
                         <template v-if="frames[0]">
-                            <img :src="frames[0].path" class="img-responsive" alt="">
+                            <img :src="'file://' + frames[0].path" class="img-responsive" alt="">
                             <div class="frame-footer">
                                 <a @click="removeFrame(0)">Discard frame</a>
                             </div>
@@ -32,7 +32,7 @@
                             <strong>Frame #2</strong>
                         </div>
                         <template v-if="frames[1]">
-                            <img :src="frames[1].path" class="img-responsive" alt="">
+                            <img :src="'file://' + frames[1].path" class="img-responsive" alt="">
                             <div class="frame-footer">
                                 <a @click="removeFrame(1)">Discard frame</a>
                             </div>
@@ -46,6 +46,12 @@
                     </div>
                 </div>
             </div>
+            <h2>Printer</h2>
+            <div class="row">
+                <div class="col-sm-6">
+                    <input :value="printer" @input="updatePrinter">
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -57,7 +63,8 @@
         props  : ['path'],
         data   : function () {
             return {
-                frames: this.$store.state.frames
+                frames: this.$store.state.frames,
+                printer: this.$store.state.printer
             }
         },
         methods: {
@@ -80,6 +87,9 @@
             removeFrame: function (id) {
                 console.log('Remove frame clicked: ' + id)
                 this.$store.commit('removeFrame', id)
+            },
+            updatePrinter (e) {
+                this.$store.commit('setPrinter', e.target.value)
             }
         }
     }

@@ -8,8 +8,8 @@ require('./ImageWatcher')
 
 let mainWindow
 const winURL = process.env.NODE_ENV === 'development'
-    // ? `http://localhost:${require('../../../config').port}`
-    ? `file://${__dirname}/../../dist/index.html`
+    ? `http://localhost:${require('../../../config').port}`
+    // ? `file://${__dirname}/../../dist/index.html`
     : `file://${__dirname}/index.html`
 
 function createWindow () {
@@ -20,7 +20,10 @@ function createWindow () {
         height: 600,
         width : 800,
         // icon  : path.join(__dirname, '../renderer/assets/img/logo.png'),
-        icon  : path.join(__dirname, '../renderer/assets/img/logo.png')
+        icon  : path.join(__dirname, '../renderer/assets/img/logo.png'),
+        webPreferences: {
+            webSecurity: false
+        }
     })
 
     mainWindow.loadURL(winURL)

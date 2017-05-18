@@ -2,6 +2,7 @@ import Vue from 'vue'
 
 export const STORAGE_KEY_PHOTOS = 'photos-vuejs'
 export const STORAGE_KEY_FRAMES = 'frames-vuejs'
+export const STORAGE_KEY_PRINTER = 'printer-vuejs'
 
 // for testing
 if (navigator.userAgent.indexOf('PhantomJS') > -1) {
@@ -10,7 +11,8 @@ if (navigator.userAgent.indexOf('PhantomJS') > -1) {
 
 export const state = {
     photos: JSON.parse(window.localStorage.getItem(STORAGE_KEY_PHOTOS) || '[]'),
-    frames: JSON.parse(window.localStorage.getItem(STORAGE_KEY_FRAMES) || '[]')
+    frames: JSON.parse(window.localStorage.getItem(STORAGE_KEY_FRAMES) || '[]'),
+    printer: JSON.parse(window.localStorage.getItem(STORAGE_KEY_PRINTER) || 'null')
 }
 
 export const mutations = {
@@ -37,5 +39,9 @@ export const mutations = {
 
     removeFrame (state, id) {
         state.frames.splice(id, 1)
+    },
+
+    setPrinter (state, name) {
+        state.printer = name
     }
 }
