@@ -15,6 +15,7 @@
 
 <script>
     import ImageComposer from '../ImageComposer'
+    const exec = require('child_process').exec
 
     export default {
         props  : ['path'],
@@ -90,6 +91,17 @@
                     // objShell.ShellExecute('c:\windows\system32\shimgvw.dll,ImageView_PrintTo /pt '+path.resolve(photo)+' "Microsoft Print to PDF"')
                 })
                 // console.log('No printer active')
+            },
+            printPhotoWin () {
+                console.info('Printing photo.')
+                exec('todo', (error, stdout, stderr) => {
+                    if (error) {
+                        console.error(`exec error: ${error}`);
+                        return;
+                    }
+                    console.log(`stdout: ${stdout}`);
+                    console.log(`stderr: ${stderr}`);
+                })
             }
         }
     }
