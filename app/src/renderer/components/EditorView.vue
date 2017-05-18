@@ -22,6 +22,7 @@
         data   : function () {
             return {
                 frames: this.$store.state.frames,
+                printer: this.$store.state.printer,
                 activeFrame: 0
             }
         },
@@ -94,9 +95,10 @@
             },
             printPhotoWin () {
                 console.info('Printing photo.')
+                self = this
                 ImageComposer.saveImage(this.$refs.imageCanvas, this.path, true, function (photo) {
                     console.info(photo)
-                    let cmd = 'rundll32.exe %SystemRoot%/System32/shimgvw.dll,ImageView_PrintTo /pt "' + photo + '" "Microsoft Print to PDF"'.replace(/\//g, '\\')
+                    let cmd = 'rundll32.exe %SystemRoot%/System32/shimgvw.dll,ImageView_PrintTo /pt "' + photo + '" "' + self.printer + '"'
                     console.info(cmd)
                     exec(cmd, (error, stdout, stderr) => {
                         if (error) {
