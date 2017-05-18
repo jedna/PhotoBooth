@@ -60,8 +60,6 @@
                 console.log('Printing photo.')
                 let self = this
 
-                // var objShell = new ActiveXObject("Shell.Application")
-                // objShell.ShellExecute('c:\windows\system32\shimgvw.dll,ImageView_PrintTo /pt '+path+' "Microsoft Print to PDF"')
                 ImageComposer.saveImage(this.$refs.imageCanvas, this.path, true, function (photo) {
                     console.log(photo)
 
@@ -89,13 +87,12 @@
                     })
 
                     win.loadURL('file://' + photo)
-                    // objShell.ShellExecute('c:\windows\system32\shimgvw.dll,ImageView_PrintTo /pt '+path.resolve(photo)+' "Microsoft Print to PDF"')
                 })
                 // console.log('No printer active')
             },
             printPhotoWin () {
                 console.info('Printing photo.')
-                self = this
+                let self = this
                 ImageComposer.saveImage(this.$refs.imageCanvas, this.path, true, function (photo) {
                     console.info(photo)
                     let cmd = 'rundll32.exe %SystemRoot%/System32/shimgvw.dll,ImageView_PrintTo /pt "' + photo + '" "' + self.printer + '"'
@@ -105,8 +102,8 @@
                             console.error(`exec error: ${error}`)
                             return
                         }
-                        console.log(`stdout: ${stdout}`)
-                        console.log(`stderr: ${stderr}`)
+                        console.info(`stdout: ${stdout}`)
+                        console.info(`stderr: ${stderr}`)
                     })
                 })
             }
