@@ -104,6 +104,7 @@
                         }
                         console.info(`stdout: ${stdout}`)
                         console.info(`stderr: ${stderr}`)
+                        self.$router.push({name: 'browser-selected', path: photo})
                     })
                 })
             }
