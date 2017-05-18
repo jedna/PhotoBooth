@@ -113,7 +113,7 @@ export default {
                         cb(saveTo)
                     })
                 } else {
-                    cb(false)
+                    cb(new Error(false))
                 }
             })
         } else {
