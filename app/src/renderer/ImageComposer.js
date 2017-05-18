@@ -77,6 +77,7 @@ export default {
         let dir = _path.dirname(path) + '/output/'
         let filename = path.split('\\').pop().split('/').pop()
         let photoPath = dir + filename.replace(/(\.[^.]*)?$/, '.printed$1')
+        photoPath = _path.normalize(photoPath)
 
         if (!fs.existsSync(dir)) {
             fs.mkdirSync(dir)

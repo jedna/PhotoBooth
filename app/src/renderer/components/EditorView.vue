@@ -8,7 +8,7 @@
 
             <span class="btn btn-info fa fa-image" @click="switchFrame"></span>
             <span class="btn btn-success fa fa-save" @click="savePhoto"></span>
-            <span class="btn btn-success fa fa-print" @click="printPhoto"></span>
+            <span class="btn btn-success fa fa-print" @click="printPhotoWin"></span>
         </div>
     </div>
 </template>
@@ -94,13 +94,18 @@
             },
             printPhotoWin () {
                 console.info('Printing photo.')
-                exec('todo', (error, stdout, stderr) => {
-                    if (error) {
-                        console.error(`exec error: ${error}`);
-                        return;
-                    }
-                    console.log(`stdout: ${stdout}`);
-                    console.log(`stderr: ${stderr}`);
+                ImageComposer.saveImage(this.$refs.imageCanvas, this.path, true, function (photo) {
+                    console.info(photo)
+                    let cmd = 'rundll32.exe %SystemRoot%/System32/shimgvw.dll,ImageView_PrintTo /pt "' + photo + '" "Microsoft Print to PDF"'.replace(/\//g, '\\')
+                    console.info(cmd)
+                    exec(cmd, (error, stdout, stderr) => {
+                        if (error) {
+                            console.error(`exec error: ${error}`)
+                            return
+                        }
+                        console.log(`stdout: ${stdout}`)
+                        console.log(`stderr: ${stderr}`)
+                    })
                 })
             }
         }

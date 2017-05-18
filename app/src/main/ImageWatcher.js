@@ -4,7 +4,7 @@ const path = require('path')
 const Chokidar = require('chokidar')
 const sharp = require('sharp')
 const async = require('async')
-const maxworkers = require('os').cpus().length - 1;
+const maxworkers = require('os').cpus().length - 1
 
 let watcher = null
 
