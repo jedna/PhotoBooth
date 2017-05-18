@@ -132,7 +132,7 @@ export default {
         const outputWidth = 1800
         const outputHeight = 1200
 
-        let photoPath = path
+        let photoPath = 'file://' + _path.resolve(path)
         let canvas = imageCanvas
         let ctx = canvas.getContext('2d')
 
@@ -146,7 +146,7 @@ export default {
         trackTransforms(ctx)
 
         origPhoto.src = photoPath
-        frameImage.src = framePath
+        frameImage.src = 'file://' + _path.resolve(framePath)
 
         let ratio = 1
 
