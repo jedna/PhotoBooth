@@ -2,14 +2,14 @@ const fs = require('fs')
 const ipc = require('electron').ipcMain
 const path = require('path')
 const Chokidar = require('chokidar')
-const sharp = require('sharp')
 const async = require('async')
 const maxworkers = require('os').cpus().length - 1
+const nativeImage = require('electron').nativeImage
 
 let watcher = null
 
 function resize (item, cb) {
-    sharp(item.path).resize(160).toFile(item.thumb, function (err) {
+    fs.writeFile(item.thumb, nativeImage.createFromPath(item.path).resize({width: 160}).toJPEG(75), function (err) {
         if (err) {
             throw err
         }
