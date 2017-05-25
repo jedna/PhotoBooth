@@ -19,7 +19,6 @@ function createWindow () {
     mainWindow = new BrowserWindow({
         height: 600,
         width : 800,
-        // icon  : path.join(__dirname, '../renderer/assets/img/logo.png'),
         icon  : path.join(__dirname, '../renderer/assets/img/logo.png'),
         webPreferences: {
             webSecurity: false
