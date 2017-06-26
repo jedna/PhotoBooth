@@ -2,7 +2,7 @@
     <div class="col-menu-wrapper">
         <div class="col-menu-bg"></div>
         <div class="col-menu">
-            <div class="dropdown header">
+            <div class="header">
                 <a class="navbar-brand" href="#"><img src="./assets/logo.png" alt=""></a>
                 <a class="settings btn dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
                    aria-haspopup="true" aria-expanded="true">
