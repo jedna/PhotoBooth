@@ -26,6 +26,12 @@ ipc.on('watch-folder', (event, folder) => {
 })
 
 function watch (folder, event) {
+    // suspend watcher if already triggered
+    if (watcher) {
+        console.info('Closing watcher...')
+        watcher.close()
+    }
+
     console.log('Loading photos in ' + folder)
     if (!fs.existsSync(folder + '/th')) {
         console.log('Creating thumb dir' + folder + '/th')
