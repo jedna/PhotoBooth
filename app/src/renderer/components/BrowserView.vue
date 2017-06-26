@@ -14,15 +14,28 @@
     const {dialog} = require('electron').remote
     const {ipcRenderer} = require('electron')
 
+    let watchingStarted = false
+
     export default {
         props     : ['path'],
         data () {
-            return {folder: null, msg: ''}
+            return {folder: this.$store.state.folder, msg: ''}
         },
         created () {
-//            ipcRenderer.send('watch-folder', this.path);
             console.info('Browser created')
+        },
+        mounted () {
+            console.info('Browser mounted')
             ipcRenderer.on('new-photos', this.receive)
+            if (this.folder && !watchingStarted) {
+                console.info('Start watching', this.folder)
+                ipcRenderer.send('watch-folder', this.folder)
+                watchingStarted = true
+            }
+        },
+        destroyed () {
+            console.info('Browser destroyed')
+            ipcRenderer.removeAllListeners('new-photos')
         },
         components: {
             LeftMenu,
@@ -39,10 +52,10 @@
                 console.log(path)
                 if (path) {
                     console.log('Selecting photos folder' + path[0])
-                    // Config.set('photosFolder', path[0]);
-                    this.folder = path[0]
+                    this.$store.commit('setFolder', path[0])
                     this.$store.commit('setPhotos', [])
-                    ipcRenderer.send('watch-folder', this.folder)
+                    ipcRenderer.send('watch-folder', path[0])
+                    watchingStarted = true
                 }
             },
             receive (event, arg) {
@@ -54,7 +67,6 @@
             }
         }
     }
-
 </script>
 
 <style lang="less">

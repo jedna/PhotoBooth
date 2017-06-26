@@ -3,6 +3,7 @@ import Vue from 'vue'
 export const STORAGE_KEY_PHOTOS = 'photos-vuejs'
 export const STORAGE_KEY_FRAMES = 'frames-vuejs'
 export const STORAGE_KEY_PRINTER = 'printer-vuejs'
+export const STORAGE_KEY_FOLDER = 'folder-vuejs'
 
 // for testing
 if (navigator.userAgent.indexOf('PhantomJS') > -1) {
@@ -12,12 +13,13 @@ if (navigator.userAgent.indexOf('PhantomJS') > -1) {
 export const state = {
     photos: JSON.parse(window.localStorage.getItem(STORAGE_KEY_PHOTOS) || '[]'),
     frames: JSON.parse(window.localStorage.getItem(STORAGE_KEY_FRAMES) || '[]'),
-    printer: JSON.parse(window.localStorage.getItem(STORAGE_KEY_PRINTER) || 'null')
+    printer: JSON.parse(window.localStorage.getItem(STORAGE_KEY_PRINTER) || 'null'),
+    folder: JSON.parse(window.localStorage.getItem(STORAGE_KEY_FOLDER) || 'null')
 }
 
 export const mutations = {
     addPhoto (state, photo) {
-        state.photos.push(photo)
+        state.photos.unshift(photo)
     },
 
     setPhotos (state, photos) {
@@ -43,5 +45,9 @@ export const mutations = {
 
     setPrinter (state, name) {
         state.printer = name
+    },
+
+    setFolder (state, name) {
+        state.folder = name
     }
 }
