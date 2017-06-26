@@ -9,16 +9,16 @@
     },
     "dependencies": {
         "async": "^2.3.0",
+        "bootstrap": "^3.3.7",
         "chokidar": "^1.6.1",
         "electron-log": "^2.0.2",
+        "jquery": "^3.2.1",
+        "sharp": "^0.18.1",
         "vue": "^2.1.10",
         "vue-electron": "^1.0.6",
-        "vue-router": "^2.1.2",
-        "jquery": "^3.2.1",
-        "vuex": "^2.2.1",
-        "bootstrap": "^3.3.7",
         "vue-lazyload": "^1.0.3",
-        "sharp": "latest"
+        "vue-router": "^2.1.2",
+        "vuex": "^2.2.1"
     },
     "devDependencies": {},
     "author": "Jan Hrubeš <jan@hrubesovi.com>",
