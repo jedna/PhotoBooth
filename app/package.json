@@ -1,6 +1,6 @@
 {
     "name": "photo-booth",
-    "version": "0.0.1",
+    "version": "0.2.4",
     "description": "Standalone application for photo booths",
     "main": "./dist/main.js",
     "repository": {
